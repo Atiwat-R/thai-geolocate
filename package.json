@@ -1,0 +1,26 @@
+{
+  "name": "thai-geolocate",
+  "version": "1.0.0",
+  "description": "A project that allow users to identify locations in Thailand from coordinates.",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node src/index.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Atiwat-R/thai-geolocate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Atiwat-R/thai-geolocate/issues"
+  },
+  "homepage": "https://github.com/Atiwat-R/thai-geolocate#readme",
+  "dependencies": {
+    "@turf/turf": "^7.2.0",
+    "stream-json": "^1.9.1"
+  }
+}
