@@ -1,4 +1,4 @@
-import { findProvince } from '../src/index.js'; // import your function
+import { findProvince } from '../src/index.js';
 
 describe('findProvince', () => {
   it('returns correct province for Bangkok coordinates', async () => {
