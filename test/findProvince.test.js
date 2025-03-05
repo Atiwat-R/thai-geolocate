@@ -6,9 +6,10 @@ describe('findProvince', () => {
     const lng = 100.5018;
     const result = await findProvince(lat, lng);
 
-    expect(result.nameEN).toBe("Bangkok");
-    expect(result.nameTH).toBe("กรุงเทพมหานคร");
-    expect(result.provinceCode).toBe("TH10");
+    expect(result.province.nameEN).toBe("Bangkok");
+    expect(result.province.nameTH).toBe("กรุงเทพมหานคร");
+    expect(result.province.pcode).toBe("TH10");
+    expect(result.province.admLevel).toBe("ADM1");
   });
 
   it('returns correct province for Chiang Mai coordinates', async () => {
@@ -16,9 +17,10 @@ describe('findProvince', () => {
     const lng = 98.9853;
     const result = await findProvince(lat, lng);
 
-    expect(result.nameEN).toBe("Chiang Mai");
-    expect(result.nameTH).toBe("เชียงใหม่");
-    expect(result.provinceCode).toBe("TH50");
+    expect(result.province.nameEN).toBe("Chiang Mai");
+    expect(result.province.nameTH).toBe("เชียงใหม่");
+    expect(result.province.pcode).toBe("TH50");
+    expect(result.province.admLevel).toBe("ADM1");
   });
 
   it('returns correct province for Phuket coordinates', async () => {
@@ -26,9 +28,10 @@ describe('findProvince', () => {
     const lng = 98.3923;
     const result = await findProvince(lat, lng);
 
-    expect(result.nameEN).toBe("Phuket");
-    expect(result.nameTH).toBe("ภูเก็ต");
-    expect(result.provinceCode).toBe("TH83");
+    expect(result.province.nameEN).toBe("Phuket");
+    expect(result.province.nameTH).toBe("ภูเก็ต");
+    expect(result.province.pcode).toBe("TH83");
+    expect(result.province.admLevel).toBe("ADM1");
   });
 
   // Edge cases: invalid values and missing parameters
@@ -71,8 +74,9 @@ describe('findProvince', () => {
     const lng = 100.5018005678;
     const result = await findProvince(lat, lng);
 
-    expect(result.nameEN).toBe("Bangkok");
-    expect(result.provinceCode).toBe("TH10");
+    expect(result.province.nameEN).toBe("Bangkok");
+    expect(result.province.pcode).toBe("TH10");
+    expect(result.province.admLevel).toBe("ADM1");
   });
 
   it('returns correct province for coordinates on a province border', async () => {
@@ -83,7 +87,8 @@ describe('findProvince', () => {
     const result = await findProvince(lat, lng);
 
     // Assume that borderline coordinates are assigned to Bangkok
-    expect(result.nameEN).toBe("Bangkok");
-    expect(result.provinceCode).toBe("TH10");
+    expect(result.province.nameEN).toBe("Bangkok");
+    expect(result.province.pcode).toBe("TH10");
+    expect(result.province.admLevel).toBe("ADM1");
   });
 });

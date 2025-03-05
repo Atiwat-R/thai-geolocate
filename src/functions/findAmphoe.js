@@ -6,6 +6,7 @@ import pick from 'stream-json/filters/Pick.js';
 import streamArray from 'stream-json/streamers/StreamArray.js';
 import { fileURLToPath } from 'url';
 import { isCoordinateValid } from './utils';
+import { findProvince } from './findProvince';
 
 /**
  * @typedef {Object} ProvinceData
@@ -16,24 +17,27 @@ import { isCoordinateValid } from './utils';
 
 
 /**
- * Find the Thai province based on given latitude and longitude.
+ * Find the Thai amphoe (district) based on given latitude and longitude.
  *
  * @param {number} lat - The latitude coordinate (-90 to 90).
  * @param {number} lng - The longitude coordinate (-180 to 180).
  * @returns {Promise<ProvinceData>} 
  */
-const findProvince = async (lat, lng) => {
-    return new Promise((resolve, reject) => {
+const findAmphoe = async (lat, lng) => {
 
-        // Validate input coordinate
-        if (!isCoordinateValid(lat, lng)) return reject(new Error("Invalid input."));
+    // Find province first, to narrow the search
+    const provinceData = await findProvince(lat, lng)
+
+    return new Promise((resolve, reject) => {
+        // Check if province's found
+        if (!provinceData) return resolve(null);
         const point = turf.point([lng, lat]);
 
         // Fetch asset dataset
         const detailLevel = "detail_level_1"
         const __filename = fileURLToPath(import.meta.url);
         const __dirname = path.dirname(__filename);
-        const geojsonPath = path.join(__dirname, `../../assets/${detailLevel}/province.json`);
+        const geojsonPath = path.join(__dirname, `../../assets/${detailLevel}/amphoe/province_${provinceData.province.pcode}.json`);
 
         const thaiProvincePipeline = fs.createReadStream(geojsonPath)
             .pipe(parser())
@@ -50,15 +54,16 @@ const findProvince = async (lat, lng) => {
             if (turf.booleanPointInPolygon(point, value)) {
                 found = true;
                 const result = {
-                    nameEN: value.properties.ADM1_EN,
-                    nameTH: value.properties.ADM1_TH,
-                    pcode: value.properties.ADM1_PCODE,
-                    admLevel: "ADM1"
+                    nameEN: value.properties.ADM2_EN,
+                    nameTH: value.properties.ADM2_TH,
+                    pcode: value.properties.ADM2_PCODE,
+                    admLevel: "ADM2"
                 };
                 // Stop further processing
                 thaiProvincePipeline.destroy();
                 return resolve({
-                    province: result
+                    province: provinceData.province,
+                    amphoe: result
                 });
             }
         });
@@ -75,6 +80,6 @@ const findProvince = async (lat, lng) => {
 
 
 export {
-    findProvince
+    findAmphoe
 }
 
