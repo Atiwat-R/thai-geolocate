@@ -39,13 +39,13 @@ const findAmphoe = async (lat, lng) => {
         const __dirname = path.dirname(__filename);
         const geojsonPath = path.join(__dirname, `../../assets/${detailLevel}/amphoe/province_${provinceData.province.pcode}.json`);
 
-        const thaiProvincePipeline = fs.createReadStream(geojsonPath)
+        const pipeline = fs.createReadStream(geojsonPath)
             .pipe(parser())
             .pipe(new pick({ filter: 'features' }))
             .pipe(new streamArray());
         let found = false;
 
-        thaiProvincePipeline.on('data', ({ key, value }) => {
+        pipeline.on('data', ({ key, value }) => {
 
             // Check if point ios within a rough rectangle. This is a preliminary, computationally inexpensive check.
             const [minLng, minLat, maxLng, maxLat] = turf.bbox(value);
@@ -60,19 +60,19 @@ const findAmphoe = async (lat, lng) => {
                     admLevel: "ADM2"
                 };
                 // Stop further processing
-                thaiProvincePipeline.destroy();
+                pipeline.destroy();
                 return resolve({
                     province: provinceData.province,
                     amphoe: result
                 });
             }
         });
-        thaiProvincePipeline.on('end', () => {
+        pipeline.on('end', () => {
             if (!found) {
                 return resolve(null); // If not found in GeoJson
             }
         });
-        thaiProvincePipeline.on('error', (err) => {
+        pipeline.on('error', (err) => {
             return reject(err);
         });
     });

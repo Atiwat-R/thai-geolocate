@@ -23,10 +23,10 @@ import { isCoordinateValid } from './utils';
  * @returns {Promise<ProvinceData>} 
  */
 const findProvince = async (lat, lng) => {
-    return new Promise((resolve, reject) => {
 
+    try {
         // Validate input coordinate
-        if (!isCoordinateValid(lat, lng)) return reject(new Error("Invalid input."));
+        if (!isCoordinateValid(lat, lng)) throw new Error("Invalid input.");
         const point = turf.point([lng, lat]);
 
         // Fetch asset dataset
@@ -35,42 +35,38 @@ const findProvince = async (lat, lng) => {
         const __dirname = path.dirname(__filename);
         const geojsonPath = path.join(__dirname, `../../assets/${detailLevel}/province.json`);
 
-        const thaiProvincePipeline = fs.createReadStream(geojsonPath)
+        const pipeline = fs.createReadStream(geojsonPath)
             .pipe(parser())
             .pipe(new pick({ filter: 'features' }))
             .pipe(new streamArray());
-        let found = false;
 
-        thaiProvincePipeline.on('data', ({ key, value }) => {
+        for await (const {key, value} of pipeline) {
 
             // Check if point ios within a rough rectangle. This is a preliminary, computationally inexpensive check.
             const [minLng, minLat, maxLng, maxLat] = turf.bbox(value);
-            if (lng < minLng || lng > maxLng || lat < minLat || lat > maxLat) return;
+            if (lng < minLng || lng > maxLng || lat < minLat || lat > maxLat) continue;
 
             if (turf.booleanPointInPolygon(point, value)) {
-                found = true;
                 const result = {
                     nameEN: value.properties.ADM1_EN,
                     nameTH: value.properties.ADM1_TH,
                     pcode: value.properties.ADM1_PCODE,
                     admLevel: "ADM1"
                 };
-                // Stop further processing
-                thaiProvincePipeline.destroy();
-                return resolve({
+                return {
                     province: result
-                });
+                };
             }
-        });
-        thaiProvincePipeline.on('end', () => {
-            if (!found) {
-                return resolve(null); // If not found in GeoJson
-            }
-        });
-        thaiProvincePipeline.on('error', (err) => {
-            return reject(err);
-        });
-    });
+        }
+
+        // If none are found
+        return {
+            province: null
+        }
+    }
+    catch(err) {
+        throw err;
+    }
 };
 
 

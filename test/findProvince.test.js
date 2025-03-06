@@ -65,7 +65,7 @@ describe('findProvince', () => {
     const lng = 139.6917;
     const result = await findProvince(lat, lng);
 
-    expect(result).toBeNull();
+    expect(result.province).toBeNull();
   });
 
   // Borderline/Precision cases
