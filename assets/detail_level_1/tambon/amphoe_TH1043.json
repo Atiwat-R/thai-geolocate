@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "tambon1",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Shape_Leng": 0.16002719218, "Shape_Area": 0.0010688538, "ADM3_EN": "Khan Na Yao", "ADM3_TH": "คันนายาว", "ADM3_PCODE": "TH104301", "ADM3_REF": null, "ADM3ALT1EN": null, "ADM3ALT2EN": null, "ADM3ALT1TH": null, "ADM3ALT2TH": null, "ADM2_EN": "Khan Na Yao", "ADM2_TH": "คันนายาว", "ADM2_PCODE": "TH1043", "ADM1_EN": "Bangkok", "ADM1_TH": "กรุงเทพมหานคร", "ADM1_PCODE": "TH10", "ADM0_EN": "Thailand", "ADM0_TH": "ประเทศไทย", "ADM0_PCODE": "TH", "date": "2019-02-18", "validOn": "2022-01-22", "validTo": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 100.68389, 13.847975 ], [ 100.704964, 13.79768 ], [ 100.685052, 13.786717 ], [ 100.67396, 13.852223 ], [ 100.68389, 13.847975 ], [ 100.68389, 13.847975 ] ] ] ] } },
+{ "type": "Feature", "properties": { "Shape_Leng": 0.22237962793, "Shape_Area": 0.00106574309, "ADM3_EN": "Ram Inthra", "ADM3_TH": "รามอินทรา", "ADM3_PCODE": "TH104302", "ADM3_REF": null, "ADM3ALT1EN": null, "ADM3ALT2EN": null, "ADM3ALT1TH": null, "ADM3ALT2TH": null, "ADM2_EN": "Khan Na Yao", "ADM2_TH": "คันนายาว", "ADM2_PCODE": "TH1043", "ADM1_EN": "Bangkok", "ADM1_TH": "กรุงเทพมหานคร", "ADM1_PCODE": "TH10", "ADM0_EN": "Thailand", "ADM0_TH": "ประเทศไทย", "ADM0_PCODE": "TH", "date": "2019-02-18", "validOn": "2022-01-22", "validTo": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 100.673034, 13.85708 ], [ 100.677237, 13.815119 ], [ 100.685052, 13.786717 ], [ 100.676567, 13.786744 ], [ 100.661121, 13.817436 ], [ 100.661423, 13.833479 ], [ 100.648731, 13.846211 ], [ 100.673034, 13.85708 ], [ 100.673034, 13.85708 ] ] ] ] } }
+]
+}

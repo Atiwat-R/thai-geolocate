@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "tambon1",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Shape_Leng": 0.15751143373000001, "Shape_Area": 0.00087554031, "ADM3_EN": "Bang Mot", "ADM3_TH": "บางมด", "ADM3_PCODE": "TH104901", "ADM3_REF": null, "ADM3ALT1EN": null, "ADM3ALT2EN": null, "ADM3ALT1TH": null, "ADM3ALT2TH": null, "ADM2_EN": "Thung Khru", "ADM2_TH": "ทุ่งครุ", "ADM2_PCODE": "TH1049", "ADM1_EN": "Bangkok", "ADM1_TH": "กรุงเทพมหานคร", "ADM1_PCODE": "TH10", "ADM0_EN": "Thailand", "ADM0_TH": "ประเทศไทย", "ADM0_PCODE": "TH", "date": "2019-02-18", "validOn": "2022-01-22", "validTo": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 100.485766, 13.657687 ], [ 100.501008, 13.652963 ], [ 100.517515, 13.6616 ], [ 100.516955, 13.64571 ], [ 100.474814, 13.635305 ], [ 100.47007, 13.660185 ], [ 100.485766, 13.657687 ], [ 100.485766, 13.657687 ] ] ] ] } },
+{ "type": "Feature", "properties": { "Shape_Leng": 0.20753363226, "Shape_Area": 0.00179801291, "ADM3_EN": "Thung Khru", "ADM3_TH": "ทุ่งครุ", "ADM3_PCODE": "TH104902", "ADM3_REF": null, "ADM3ALT1EN": null, "ADM3ALT2EN": null, "ADM3ALT1TH": null, "ADM3ALT2TH": null, "ADM2_EN": "Thung Khru", "ADM2_TH": "ทุ่งครุ", "ADM2_PCODE": "TH1049", "ADM1_EN": "Bangkok", "ADM1_TH": "กรุงเทพมหานคร", "ADM1_PCODE": "TH10", "ADM0_EN": "Thailand", "ADM0_TH": "ประเทศไทย", "ADM0_PCODE": "TH", "date": "2019-02-18", "validOn": "2022-01-22", "validTo": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 100.515293, 13.644736 ], [ 100.521038, 13.605142 ], [ 100.491218, 13.586161 ], [ 100.476947, 13.599287 ], [ 100.481712, 13.615344 ], [ 100.474814, 13.635305 ], [ 100.515293, 13.644736 ], [ 100.515293, 13.644736 ] ] ] ] } }
+]
+}

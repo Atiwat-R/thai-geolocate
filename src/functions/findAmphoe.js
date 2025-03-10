@@ -5,7 +5,6 @@ import parser from 'stream-json';
 import pick from 'stream-json/filters/Pick.js';
 import streamArray from 'stream-json/streamers/StreamArray.js';
 import { fileURLToPath } from 'url';
-import { isCoordinateValid } from './utils';
 import { findProvince } from './findProvince';
 
 /** Find the Thai amphoe (district) based on given latitude and longitude.

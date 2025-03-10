@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "tambon1",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Shape_Leng": 0.24067974586, "Shape_Area": 0.00158202503, "ADM3_EN": "Thawi Watthana", "ADM3_TH": "ทวีวัฒนา", "ADM3_PCODE": "TH104801", "ADM3_REF": null, "ADM3ALT1EN": null, "ADM3ALT2EN": null, "ADM3ALT1TH": null, "ADM3ALT2TH": null, "ADM2_EN": "Thawi Watthana", "ADM2_TH": "ทวีวัฒนา", "ADM2_PCODE": "TH1048", "ADM1_EN": "Bangkok", "ADM1_TH": "กรุงเทพมหานคร", "ADM1_PCODE": "TH10", "ADM0_EN": "Thailand", "ADM0_TH": "ประเทศไทย", "ADM0_PCODE": "TH", "date": "2019-02-18", "validOn": "2022-01-22", "validTo": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 100.356014, 13.780336 ], [ 100.359251, 13.768892 ], [ 100.406775, 13.76008 ], [ 100.406185, 13.749438 ], [ 100.352702, 13.751965 ], [ 100.359359, 13.738002 ], [ 100.33676, 13.737147 ], [ 100.33062, 13.773215 ], [ 100.356014, 13.780336 ], [ 100.356014, 13.780336 ] ] ] ] } },
+{ "type": "Feature", "properties": { "Shape_Leng": 0.25268631753999998, "Shape_Area": 0.00260871856, "ADM3_EN": "Sala Thammasop", "ADM3_TH": "ศาลาธรรมสพน์", "ADM3_PCODE": "TH104802", "ADM3_REF": null, "ADM3ALT1EN": null, "ADM3ALT2EN": null, "ADM3ALT1TH": null, "ADM3ALT2TH": null, "ADM2_EN": "Thawi Watthana", "ADM2_TH": "ทวีวัฒนา", "ADM2_PCODE": "TH1048", "ADM1_EN": "Bangkok", "ADM1_TH": "กรุงเทพมหานคร", "ADM1_PCODE": "TH10", "ADM0_EN": "Thailand", "ADM0_TH": "ประเทศไทย", "ADM0_PCODE": "TH", "date": "2019-02-18", "validOn": "2022-01-22", "validTo": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 100.335899, 13.803742 ], [ 100.411058, 13.801347 ], [ 100.406775, 13.76008 ], [ 100.359251, 13.768892 ], [ 100.356014, 13.780336 ], [ 100.333863, 13.781243 ], [ 100.335899, 13.803742 ], [ 100.335899, 13.803742 ] ] ] ] } }
+]
+}
