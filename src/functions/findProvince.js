@@ -7,20 +7,16 @@ import streamArray from 'stream-json/streamers/StreamArray.js';
 import { fileURLToPath } from 'url';
 import { isCoordinateValid } from './utils';
 
-/**
- * @typedef {Object} ProvinceData
- * @property {string} nameEN - The province name in English.
- * @property {string} nameTH - The province name in Thai.
- * @property {string} provinceCode - The province code.
+
+/** Find the Thai province based on given latitude and longitude.
+ * 
+ * @typedef {Object} GeoData
+ * @property {{ nameEN: string, nameTH: string, pcode: string, admLevel: string } | null} province - Province info.
  */
-
-
 /**
- * Find the Thai province based on given latitude and longitude.
- *
  * @param {number} lat - The latitude coordinate (-90 to 90).
  * @param {number} lng - The longitude coordinate (-180 to 180).
- * @returns {Promise<ProvinceData>} 
+ * @returns {GeoData} 
  */
 const findProvince = async (lat, lng) => {
 

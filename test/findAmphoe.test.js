@@ -51,12 +51,11 @@ describe('findAmphoe', () => {
     expect(result.province.admLevel).toBe("ADM1");
   });
 
-  it('returns null for coordinates outside of Thailand', async () => {
+  it('throws an error for coordinates outside of Thailand', async () => {
     // Tokyo, Japan coordinates
     const lat = 35.6895;
     const lng = 139.6917;
-    const result = await findAmphoe(lat, lng);
-    expect(result).toBeNull();
+    await expect(findAmphoe(lat, lng)).rejects.toThrow();
   });
 
   // Edge cases: invalid inputs
@@ -81,5 +80,37 @@ describe('findAmphoe', () => {
   it('throws an error when parameters are missing', async () => {
     await expect(findAmphoe()).rejects.toThrow();
     await expect(findAmphoe(13.7414)).rejects.toThrow();
+  });
+
+  it('handles high-precision coordinates correctly', async () => {
+    const lat = 13.7414001234;
+    const lng = 100.5328005678;
+    const result = await findAmphoe(lat, lng);
+
+    // Expect the same result as for the base coordinates.
+    expect(result.amphoe.nameEN).toBe("Pathum Wan");
+    expect(result.amphoe.pcode).toBe("TH1007");
+    expect(result.amphoe.admLevel).toBe("ADM2");
+
+    expect(result.province.nameEN).toBe("Bangkok");
+    expect(result.province.pcode).toBe("TH10");
+    expect(result.province.admLevel).toBe("ADM1");
+  });
+
+  it('returns correct amphoe for borderline coordinates', async () => {
+    // Coordinates in Satun province, Thung Wa district
+    const lat = 7.151071;  
+    const lng = 99.848898;
+    const result = await findAmphoe(lat, lng);
+
+    expect(result.amphoe.nameEN).toBe("Thung Wa");
+    expect(result.amphoe.nameTH).toBe("ทุ่งหว้า");
+    expect(result.amphoe.pcode).toBe("TH9106");
+    expect(result.amphoe.admLevel).toBe("ADM2");
+
+    expect(result.province.nameEN).toBe("Satun");
+    expect(result.province.nameTH).toBe("สตูล");
+    expect(result.province.pcode).toBe("TH91");
+    expect(result.province.admLevel).toBe("ADM1");
   });
 });
