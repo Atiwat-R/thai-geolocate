@@ -18,7 +18,7 @@ import { isCoordinateValid } from './utils';
  * @param {number} lng - The longitude coordinate (-180 to 180).
  * @returns {GeoData} 
  */
-const findProvince = async (lat, lng) => {
+const findProvince = async (lat, lng, detail_level=1) => {
 
     try {
         // Validate input coordinate
@@ -26,10 +26,13 @@ const findProvince = async (lat, lng) => {
         const point = turf.point([lng, lat]);
 
         // Fetch asset dataset
-        const detailLevel = "detail_level_1"
+        const detailLevel = `detail_level_${detail_level}`
         const __filename = fileURLToPath(import.meta.url);
         const __dirname = path.dirname(__filename);
         const geojsonPath = path.join(__dirname, `../../assets/${detailLevel}/province.json`);
+
+        // Check file validity
+        if (!fs.existsSync(geojsonPath)) throw new Error("Detail level not found. Please import the dataset.");
 
         const pipeline = fs.createReadStream(geojsonPath)
             .pipe(parser())
@@ -38,7 +41,7 @@ const findProvince = async (lat, lng) => {
 
         for await (const {key, value} of pipeline) {
 
-            // Check if point ios within a rough rectangle. This is a preliminary, computationally inexpensive check.
+            // Check if point is within a rough rectangle. This is a preliminary, computationally inexpensive check.
             const [minLng, minLat, maxLng, maxLat] = turf.bbox(value);
             if (lng < minLng || lng > maxLng || lat < minLat || lat > maxLat) continue;
 
