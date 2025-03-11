@@ -4,7 +4,7 @@ describe('findTambon', () => {
     it('returns correct tambon for tambon Huai Yang, amphoe Bua Yai, Nakhon Ratchasima province', async () => {
         const lat = 15.631059;
         const lng = 102.286112;
-        const result = await findTambon(lat, lng, 1);
+        const result = await findTambon(lat, lng);
 
 
         // Verify province details
@@ -30,7 +30,12 @@ describe('findTambon', () => {
     it('returns correct tambon for tambon Bang Nam Chued, amphoe Muang Samut Sakhon, Samut Sakhon province', async () => {
         const lat = 13.599302;
         const lng = 100.369061;
-        const result = await findTambon(lat, lng, 2);
+        const accuracyConfig = { 
+            province: 1, 
+            amphoe: 1,
+            tambon: 2
+        }
+        const result = await findTambon(lat, lng, accuracyConfig);
     
         // Verify province details
         expect(result.province.nameEN).toBe("Samut Sakhon");
@@ -55,7 +60,12 @@ describe('findTambon', () => {
     it('returns correct tambon for tambon Tha Kham, amphoe Bang Khun Thian, Bangkok province', async () => {
         const lat = 13.618999;
         const lng = 100.449725;
-        const result = await findTambon(lat, lng, 2);
+        const accuracyConfig = { 
+            province: 1, 
+            amphoe: 1,
+            tambon: 2
+        }
+        const result = await findTambon(lat, lng, accuracyConfig);
         
         // Verify province details
         expect(result.province.nameEN).toBe("Bangkok");
@@ -106,9 +116,12 @@ describe('findTambon', () => {
     it('returns correct high-precision tambon for tambon Pa O Don Chai, amphoe Mueang Chiang Rai, Chiang Rai province', async () => {
         const lat = 19.82327912424;
         const lng = 99.76269635621;
-        const result = await findTambon(lat, lng, 2);
-      
-        console.log(result);
+        const accuracyConfig = { 
+            province: 2, 
+            amphoe: 2,
+            tambon: 2
+        }
+        const result = await findTambon(lat, lng, accuracyConfig);
       
         // Verify province details
         expect(result.province.nameEN).toBe("Chiang Rai");
