@@ -47,7 +47,13 @@ const findTambon = async (lat, lng, accuracyLevel={province: 1, amphoe: 1, tambo
             amphoe: accuracyLevel.amphoe 
         }
         const amphoeData = await findAmphoe(lat, lng, accuracyConfig)
-        if (!amphoeData?.amphoe) throw new Error("Amphoe not found, abort searching for Tambon")
+        if (!amphoeData?.amphoe) {
+            return {
+                province: null,
+                amphoe: null,
+                tambon: null
+            };
+        }
 
         // Validate input coordinate
         const point = turf.point([lng, lat]);

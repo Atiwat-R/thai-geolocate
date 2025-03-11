@@ -51,11 +51,13 @@ describe('findAmphoe', () => {
     expect(result.province.admLevel).toBe("ADM1");
   });
 
-  it('throws an error for coordinates outside of Thailand', async () => {
+  it('returns null for coordinates outside of Thailand', async () => {
     // Tokyo, Japan coordinates
     const lat = 35.6895;
     const lng = 139.6917;
-    await expect(findAmphoe(lat, lng)).rejects.toThrow();
+    const result = await findAmphoe(lat, lng);
+
+    expect(result.amphoe).toBeNull();
   });
 
   // Edge cases: invalid inputs
@@ -113,4 +115,89 @@ describe('findAmphoe', () => {
     expect(result.province.pcode).toBe("TH91");
     expect(result.province.admLevel).toBe("ADM1");
   });
+
+    // ----- AccuracyConfig Invalid Cases -----
+  it('throws an error for invalid accuracyLevel type (non-object)', async () => {
+    const lat = 13.7563;
+    const lng = 100.5018;
+    const accuracyLevel = "invalid";
+    await expect(findAmphoe(lat, lng, accuracyLevel)).rejects.toThrow("Invalid accuracyLevel input.");
+  });
+
+  it('throws an error for missing province key in accuracyLevel', async () => {
+    const lat = 13.7563;
+    const lng = 100.5018;
+    const accuracyLevel = {};
+    await expect(findAmphoe(lat, lng, accuracyLevel)).rejects.toThrow("Invalid accuracyLevel input.");
+  });
+
+  it('throws an error for non-numeric province value in accuracyLevel', async () => {
+    const lat = 13.7563;
+    const lng = 100.5018;
+    const accuracyLevel = { province: "high", amphoe: "higher" };
+    await expect(findAmphoe(lat, lng, accuracyLevel)).rejects.toThrow("Invalid accuracyLevel input.");
+  });
+
+  it('throws an error for negative province accuracyLevel', async () => {
+    const lat = 13.7563;
+    const lng = 100.5018;
+    const accuracyLevel = { province: -1, amphoe: -31 };
+    await expect(findAmphoe(lat, lng, accuracyLevel)).rejects.toThrow();
+  });
+
+  // ----- Dataset File Missing -----
+  it('throws an error when dataset file does not exist for given accuracyLevel', async () => {
+    const lat = 13.7563;
+    const lng = 100.5018;
+    // Assuming that there is no dataset for accuracy_level_99
+    const accuracyLevel = { province: 99, amphoe: 773 };
+    await expect(findAmphoe(lat, lng, accuracyLevel)).rejects.toThrow(/Cannot find dataset/);
+  });
+
+  // ----- Extreme Coordinate Values -----
+  it('returns null for extreme valid coordinates (lat=90, lng=0)', async () => {
+    const lat = 90;
+    const lng = 0;
+    const result = await findAmphoe(lat, lng);
+    expect(result.amphoe).toBeNull();
+  });
+
+  it('returns null for extreme valid coordinates (lat=-90, lng=0)', async () => {
+    const lat = -90;
+    const lng = 0;
+    const result = await findAmphoe(lat, lng);
+    expect(result.amphoe).toBeNull();
+  });
+
+  it('returns null for extreme valid coordinates (lat=0, lng=180)', async () => {
+    const lat = 0;
+    const lng = 180;
+    const result = await findAmphoe(lat, lng);
+    expect(result.amphoe).toBeNull();
+  });
+
+  it('returns null for extreme valid coordinates (lat=0, lng=-180)', async () => {
+    const lat = 0;
+    const lng = -180;
+    const result = await findAmphoe(lat, lng);
+    expect(result.amphoe).toBeNull();
+  });
+
+  // ----- Additional Invalid Coordinate Types -----
+  it('throws an error for boolean values as coordinates', async () => {
+    await expect(findAmphoe(true, false)).rejects.toThrow("Invalid (lat, lng) input.");
+  });
+
+  it('throws an error for array values as coordinates', async () => {
+    await expect(findAmphoe([13.7563], [100.5018])).rejects.toThrow("Invalid (lat, lng) input.");
+  });
+
+  it('throws an error for null latitude', async () => {
+    await expect(findAmphoe(null, 100.5018)).rejects.toThrow("Invalid (lat, lng) input.");
+  });
+
+  it('throws an error for undefined longitude', async () => {
+    await expect(findAmphoe(13.7563, undefined)).rejects.toThrow("Invalid (lat, lng) input.");
+  });
+
 });

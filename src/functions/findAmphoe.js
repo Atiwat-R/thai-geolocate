@@ -44,7 +44,12 @@ const findAmphoe = async (lat, lng, accuracyLevel={province: 1, amphoe: 1}) => {
             province: accuracyLevel.province, 
         }
         const provinceData = await findProvince(lat, lng, accuracyConfig)
-        if (!provinceData?.province) throw new Error("Province not found, abort searching for Amphoe")
+        if (!provinceData?.province) {
+            return {
+                province: null,
+                amphoe: null
+            };
+        }
 
         // Validate input coordinate
         const point = turf.point([lng, lat]);
