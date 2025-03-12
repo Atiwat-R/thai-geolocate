@@ -5,8 +5,8 @@ import parser from 'stream-json';
 import pick from 'stream-json/filters/Pick.js';
 import streamArray from 'stream-json/streamers/StreamArray.js';
 import { fileURLToPath } from 'url';
-import { findAmphoe } from './findAmphoe';
-import { isAccuracyConfigValid } from './utils';
+import { findAmphoe } from './findAmphoe.js';
+import { isAccuracyConfigValid } from './utils.js';
 
 // Find the Thai tambon (sub-district) based on given latitude and longitude.
 

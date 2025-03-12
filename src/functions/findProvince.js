@@ -5,7 +5,7 @@ import parser from 'stream-json';
 import pick from 'stream-json/filters/Pick.js';
 import streamArray from 'stream-json/streamers/StreamArray.js';
 import { fileURLToPath } from 'url';
-import { isCoordinateValid, isAccuracyConfigValid } from './utils';
+import { isCoordinateValid, isAccuracyConfigValid } from './utils.js';
 
 
 // Find the Thai province based on given latitude and longitude.

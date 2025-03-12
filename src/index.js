@@ -1,3 +1,3 @@
-export * from "./functions/findProvince"
-export * from "./functions/findAmphoe"
-export * from "./functions/findTambon"
+export * from "./functions/findProvince.js"
+export * from "./functions/findAmphoe.js"
+export * from "./functions/findTambon.js"
