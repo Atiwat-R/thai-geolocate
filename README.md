@@ -1,5 +1,7 @@
 # thai-geolocate
 
+[![npm](https://img.shields.io/npm/v/thai-geolocate)](https://www.npmjs.com/package/thai-geolocate)
+
 #### English:
 A Node.js library for geographic matching in Thailand. This library provides functions to determine administrative boundaries—province, amphoe (district), and tambon (sub-district)—based on latitude and longitude inputs.
 
