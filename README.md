@@ -1,7 +1,9 @@
 # thai-geolocate
 
+#### English:
 A Node.js library for geographic matching in Thailand. This library provides functions to determine administrative boundaries—province, amphoe (district), and tambon (sub-district)—based on latitude and longitude inputs.
 
+#### ไทย:
 Node.js library ที่สามารถระบุ จังหวัด อําเภอ และตําบล จากตัวเลขพิกัด (coordinate) ค่าละติจูด, ลองจิจูด (latitude, longtitude)
 
 ## Features / ความสามารถ
@@ -66,11 +68,23 @@ console.log('Province:', tambonResult.province);
 
 ## Optional Accuracy Configuration
 
+#### English:
 Each function accepts an optional accuracyLevel parameter. 
 By default, each of the properties in accuracyLevel is set to 1, which is the simplest but computes the fastest.
 
+Higher accuracy level gives more precision, but may take longer to compute.
+Currently, the recommended combination for general use is `{ province: 1, amphoe: 1, tambon: 2 }`
+
+As of the latest version, only <mark>`accuracyLevel 1 and 2 is available.`</mark>
+
+#### ไทย:
 แต่ละฟังก์ชันสามารถรับพารามิเตอร์ accuracyLevel ที่เป็นตัวเลือกได้
 โดยค่าเริ่มต้นจะตั้งค่าระดับความแม่นยำไว้ที่ 1 ซึ่งเป็นระดับที่เรืยบง่ายที่สุดแต่ประมวลผลได้เร็วที่สุด
+
+การตั้งค่าระดับความแม่นยำที่สูงขึ้นจะทําให้ผลลัพธ์แม่นยำมากขึ้น แต่อาจใช้เวลาประมวลผลนานกว่า
+การตั้งค่าที่แนะนำสำหรับการใช้งานทั่วไปคือ { province: 1, amphoe: 1, tambon: 2 }
+
+สำหรับเวอร์ชันล่าสุดนี้ มีเฉพาะ <mark>`accuracyLevel 1 และ 2 เท่านั้นที่ใช้ได้`</mark>
 
 ```
 import { findProvince, findAmphoe, findTambon } from 'thai-geolocate';
@@ -127,11 +141,17 @@ console.log('Province:', tambonResult.province);
   - `amphoe`: District details.
   - `tambon`: Sub-district details.
 
+> **Note:** The functions are async. Use `await` (or `.then()`).
+
+> **หมายเหตุ:** ฟังก์ชันใช้ async โปรดใช้ `await` (หรือ `.then()`)
+
 ## Testing / การทดสอบ
 
+#### English:
 This library comes with a comprehensive test suite using Jest. To run the tests:
 
-ขั้นตอนการทดสอบทำได้โดยใช้ Jestซ
+#### ไทย:
+ขั้นตอนการทดสอบทำได้โดยใช้ Jest
 
 1. Install Jest as a dev dependency:
    ```bash
@@ -146,6 +166,8 @@ This library comes with a comprehensive test suite using Jest. To run the tests:
 ## Contributing / การมีส่วนร่วม
 
 Contributions are welcome! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribute to this project.
+
+หากท่านต้องการ contribute สามารถอ่านมาตรการได้ที่ [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## License / ใบอนุญาต
 
