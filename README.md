@@ -3,10 +3,10 @@
 [![npm](https://img.shields.io/npm/v/thai-geolocate)](https://www.npmjs.com/package/thai-geolocate)
 
 #### English:
-A Node.js library for geographic matching in Thailand. This library provides functions to determine administrative boundaries—province, amphoe (district), and tambon (sub-district)—based on latitude and longitude inputs.
+ Node.js library for geographic matching in Thailand. This library provides functions to determine administrative area in Thailand—province, amphoe (district), and tambon (sub-district)—based on latitude and longitude inputs.
 
 #### ไทย:
-Node.js library ที่สามารถระบุ จังหวัด อําเภอ และตําบล จากตัวเลขพิกัด (coordinate) ค่าละติจูด, ลองจิจูด (latitude, longtitude)
+Node.js library ที่สามารถระบุ จังหวัด อําเภอ และตําบลในประเทศไทย จากตัวเลขพิกัด (coordinate) ค่าละติจูดและลองจิจูด (latitude, longtitude)
 
 ## Features / ความสามารถ
 
@@ -34,10 +34,12 @@ npm install thai-geolocate
 
 Or add it as a dependency in your package.json / หรือใส่เป็น dependency ใน package.json:
 
+Don't forget to update the **version number** / อย่าลืมเปลื่ยนเลข **version number**
+
 ```
 {
   "dependencies": {
-    "thai-geolocate": "^1.0.0"
+    "thai-geolocate": "^1.0.2"
   }
 }
 ```
